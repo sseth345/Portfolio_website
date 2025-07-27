@@ -10,7 +10,11 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* Mobile viewport fix */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
+
 /* Loading Screen Animations */
 @keyframes blob {
   0% {
@@ -71,30 +75,253 @@ body {
 .glow {
   filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.7));
 }
+
 .drop-shadow {
   filter: drop-shadow(0 0 20px #e1060033);
 }
-@media (max-width: 700px) {
-  .w-[430px] { width: 90vw !important; }
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  .w-[430px] { 
+    width: 95vw !important; 
+    max-width: 400px !important;
+  }
+  
+  /* Hero section mobile fixes */
+  .hero-mobile-text {
+    font-size: 2.5rem !important;
+    line-height: 1.1 !important;
+  }
+  
+  .hero-mobile-subtext {
+    font-size: 1.2rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  /* Profile image mobile fixes */
+  .profile-mobile {
+    width: 280px !important;
+    height: 280px !important;
+  }
+  
+  /* Projects mobile layout */
+  .project-mobile {
+    flex-direction: column !important;
+  }
+  
+  .project-image-mobile {
+    width: 100% !important;
+    height: 200px !important;
+  }
+  
+  /* Skills grid mobile */
+  .skills-mobile {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 1rem !important;
+  }
+  
+  /* Contact form mobile */
+  .contact-mobile {
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 2rem !important;
+  }
+  
+  /* Matrix background mobile optimization */
+  .matrix-mobile {
+    opacity: 0.02 !important;
+  }
+  
+  /* Button mobile responsive */
+  .btn-mobile {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* Text scaling for mobile */
+  .text-mobile-xl {
+    font-size: 1.5rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .text-mobile-lg {
+    font-size: 1.125rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .text-mobile-base {
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Padding adjustments for mobile */
+  .mobile-padding {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .mobile-margin {
+    margin-left: 0.5rem !important;
+    margin-right: 0.5rem !important;
+  }
 }
+
+/* Tablet responsive fixes */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .w-[430px] { 
+    width: 80vw !important; 
+    max-width: 500px !important;
+  }
+  
+  .hero-tablet-text {
+    font-size: 3rem !important;
+  }
+  
+  .profile-tablet {
+    width: 320px !important;
+    height: 320px !important;
+  }
+}
+
+/* Global responsive fixes */
 html, body, #root {
   background-color: black;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
+
+/* Hero section effects */
 .hero-container:hover .matrix-digit {
   color: #22c55e !important;
   text-shadow: 0 0 8px #22c55e, 0 0 15px #22c55e;
   transition: all 0.3s ease;
 }
+
 .echo-glow {
   animation: radial-glow 2s infinite ease-in-out;
 }
+
 @keyframes radial-glow {
-  0%, 100% { box-shadow: 0 0 12px 5px rgba(34, 197, 94, 0.6); }
-  50% { box-shadow: 0 0 25px 10px rgba(34, 197, 94, 1); }
+  0%, 100% { 
+    box-shadow: 0 0 12px 5px rgba(34, 197, 94, 0.6); 
+  }
+  50% { 
+    box-shadow: 0 0 25px 10px rgba(34, 197, 94, 1); 
+  }
 }
+
+.profile-window {
+  position: relative;
+  animation: profile-glow 4s infinite ease-in-out;
+}
+
 .profile-window::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
   background: linear-gradient(135deg, #22c55e 0%, #8b5cf6 100%);
+  border-radius: 1rem;
   filter: blur(20px);
+  z-index: -1;
+  opacity: 0.7;
 }
 
+@keyframes profile-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 20px rgba(34, 197, 94, 0.6)) drop-shadow(0 0 30px rgba(139, 92, 246, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 35px rgba(34, 197, 94, 0.9)) drop-shadow(0 0 45px rgba(139, 92, 246, 0.7));
+  }
+}
 
+/* Mobile-specific performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce animations on mobile for better performance */
+  .animate-blob {
+    animation-duration: 10s;
+  }
+  
+  .echo-glow {
+    animation-duration: 3s;
+  }
+  
+  .profile-window {
+    animation-duration: 6s;
+  }
+  
+  /* Reduce blur effects on mobile */
+  .profile-window::before {
+    filter: blur(10px);
+  }
+  
+  /* Optimize matrix background for mobile */
+  .matrix-digit {
+    font-size: 10px !important;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Hover effects disabled for touch devices */
+  .hero-container:hover .matrix-digit {
+    color: inherit;
+    text-shadow: none;
+  }
+  
+  /* Larger touch targets */
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better touch scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* High DPI screen optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Crisp rendering on retina displays */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-container {
+    min-height: auto !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  .profile-mobile {
+    width: 200px !important;
+    height: 200px !important;
+  }
+}
+
+/* Very small screens (old phones) */
+@media (max-width: 360px) {
+  .hero-mobile-text {
+    font-size: 2rem !important;
+  }
+  
+  .hero-mobile-subtext {
+    font-size: 1rem !important;
+  }
+  
+  .profile-mobile {
+    width: 240px !important;
+    height: 240px !important;
+  }
+  
+  .mobile-padding {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+}
