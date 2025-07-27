@@ -14,10 +14,11 @@ const Projects = () => {
       color: "text-green-400",
       date: "06/2025",
       tech: ["Kotlin", "Jetpack Compose", "Google ML Kit", "Room Database"],
-      github: "https://github.com/sseth345/VitalVision", // Actual VitalVision GitHub
-      imageUrl: vitalVisionImage, // VitalVision image from assets
-      liveUrl: "https://github.com/sseth345/VitalVision", // Same as GitHub for now
+      github: "https://github.com/sseth345/VitalVision",
+      imageUrl: vitalVisionImage,
+      liveUrl: "https://github.com/sseth345/VitalVision",
       windowTitle: "vitalvision_app.apk",
+      isKaggle: false, // GitHub project
       description: "Real-time Android app for emotion detection and analysis",
       achievements: [
         "Reduced processing time by 35% through optimized ML models",
@@ -33,10 +34,11 @@ const Projects = () => {
       color: "text-blue-400", 
       date: "02/2025",
       tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Flutter"],
-      github: "https://github.com/dipsitarout/LIBRARY_MANAGEMENT", // Actual IntelliLib GitHub
-      imageUrl: intelliLibImage, // IntelliLib image from assets
-      liveUrl: "https://github.com/dipsitarout/LIBRARY_MANAGEMENT", // Same as GitHub for now
+      github: "https://github.com/dipsitarout/LIBRARY_MANAGEMENT",
+      imageUrl: intelliLibImage,
+      liveUrl: "https://github.com/dipsitarout/LIBRARY_MANAGEMENT",
       windowTitle: "intellilib_system.exe",
+      isKaggle: false, // GitHub project
       description: "Full-stack library management system with web and mobile interfaces",
       achievements: [
         "Reduced manual data entry by 60% through real-time synchronization",
@@ -52,10 +54,11 @@ const Projects = () => {
       color: "text-purple-400",
       date: "06/2024", 
       tech: ["Python", "TensorFlow", "Keras", "Pandas", "NumPy"],
-      github: "https://www.kaggle.com/code/sethsiddharth/allmodels", // Actual Kaggle link
-      imageUrl: aqiImage, // AQI image from assets
-      liveUrl: "https://www.kaggle.com/code/sethsiddharth/allmodels", // Same as Kaggle
+      github: "https://www.kaggle.com/code/sethsiddharth/allmodels",
+      imageUrl: aqiImage,
+      liveUrl: "https://www.kaggle.com/code/sethsiddharth/allmodels",
       windowTitle: "aqi_forecasting.ipynb",
+      isKaggle: true, // Kaggle project
       description: "Deep learning-based air quality prediction system",
       achievements: [
         "Engineered ConvTRANS model for analyzing 5+ years of pollutant trends",
@@ -66,6 +69,17 @@ const Projects = () => {
       ]
     }
   ];
+
+  // Custom Kaggle Icon Component
+  const KaggleIcon = ({ className }) => (
+    <svg 
+      viewBox="0 0 24 24" 
+      className={className}
+      fill="currentColor"
+    >
+      <path d="M18.825 23.859c-.022.092-.117.141-.281.141h-3.139c-.187 0-.351-.082-.492-.248l-5.178-6.589-1.448 1.374v5.111c0 .235-.117.352-.351.352H5.505c-.236 0-.354-.117-.354-.352V.353c0-.233.118-.353.354-.353h2.431c.234 0 .351.12.351.353v14.343l6.203-6.272c.165-.165.33-.248.495-.248h3.239c.144 0 .236.06.285.18.046.149.034.255-.036.315l-6.555 6.344 6.836 8.507c.095.104.117.208.07.338"/>
+    </svg>
+  );
 
   return (
     <section className="py-20 bg-gray-900/20">
@@ -100,7 +114,7 @@ const Projects = () => {
                       <div key={index} className="bg-gray-800/50 border border-gray-600 rounded-lg overflow-hidden hover:border-gray-500 transition-colors">
                         
                         <div className="flex flex-col lg:flex-row">
-                          {/* Project Image Window */}
+                          {/* Project Image Window - Clean without buttons */}
                           <div className="lg:w-1/3">
                             <div className="bg-gray-800 px-3 py-2 border-b border-gray-600">
                               <div className="flex items-center justify-between">
@@ -109,36 +123,16 @@ const Projects = () => {
                                   <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                                 </div>
-                                <span className="text-gray-400 font-mono text-xs">{project.windowTitle}</span> {/* Dynamic window title */}
+                                <span className="text-gray-400 font-mono text-xs">{project.windowTitle}</span>
                               </div>
                             </div>
                             <div className="relative h-64 lg:h-full bg-gray-700 flex items-center justify-center">
                               <img 
                                 src={project.imageUrl} 
                                 alt={`${project.title} preview`} 
-                                className="w-full h-full object-cover" // Keep object-cover for project images
+                                className="w-full h-full object-cover"
                               />
-                              <div className="absolute inset-0 bg-black/10"></div> {/* Reduced overlay */}
-                              <div className="absolute bottom-3 right-3 flex space-x-2">
-                                <a 
-                                  href={project.github} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-md text-xs transition-colors"
-                                  title="View on GitHub/Kaggle"
-                                >
-                                  <Github className="w-4 h-4" />
-                                </a>
-                                <a 
-                                  href={project.liveUrl} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-md text-xs transition-colors"
-                                  title="View Live Project"
-                                >
-                                  <ExternalLink className="w-4 h-4" />
-                                </a>
-                              </div>
+                              <div className="absolute inset-0 bg-black/10"></div>
                             </div>
                           </div>
 
@@ -147,7 +141,27 @@ const Projects = () => {
                             <div className="flex items-start mb-4">
                               <Icon className={`w-8 h-8 ${project.color} mt-1 mr-4 flex-shrink-0`} />
                               <div className="flex-1">
-                                <h3 className={`text-2xl font-bold ${project.color} mb-2`}>{project.title}</h3>
+                                {/* Title with Go to Project Button */}
+                                <div className="flex items-center justify-between mb-2">
+                                  <h3 className={`text-2xl font-bold ${project.color}`}>{project.title}</h3>
+                                  
+                                  {/* Go to Project Button with Dynamic Icon */}
+                                  <a 
+                                    href={project.github} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-mono text-xs transition-all duration-200 hover:scale-105"
+                                  >
+                                    {project.isKaggle ? (
+                                      <KaggleIcon className="w-4 h-4" />
+                                    ) : (
+                                      <Github className="w-4 h-4" />
+                                    )}
+                                    <span>Go to Project</span>
+                                    <ExternalLink className="w-3 h-3" />
+                                  </a>
+                                </div>
+
                                 <p className="text-gray-300 text-lg mb-3">{project.description}</p>
                                 
                                 <div className="flex items-center space-x-2 mb-4">

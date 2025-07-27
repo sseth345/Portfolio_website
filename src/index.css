@@ -89,11 +89,12 @@ html, body, #root {
   animation: radial-glow 2s infinite ease-in-out;
 }
 @keyframes radial-glow {
-  0%, 100% { box-shadow: 0 0 15px 5px rgba(34, 197, 94, 0.6); }
+  0%, 100% { box-shadow: 0 0 12px 5px rgba(34, 197, 94, 0.6); }
   50% { box-shadow: 0 0 25px 10px rgba(34, 197, 94, 1); }
 }
 .profile-window::before {
   background: linear-gradient(135deg, #22c55e 0%, #8b5cf6 100%);
   filter: blur(20px);
 }
+
 
