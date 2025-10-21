@@ -110,7 +110,7 @@ const Contact = () => {
                         <MapPin className="w-5 h-5 text-purple-400" />
                         <span className="text-purple-400 font-semibold">Current Location</span>
                       </div>
-                      <p className="text-gray-300">Chennai, India (VIT Campus)</p>
+                      <p className="text-gray-300">Vellore Institute of Technology (VIT), Chennai, India</p>
                     </div>
                   </div>
 
